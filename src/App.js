@@ -3,6 +3,8 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import {Provider} from "react-redux";
 import store from "./redux/store";
+import Products from "./pages/Products";
+
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
               <Header />
               <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route path="/products" element={<Products />} />
               </Routes>
           </Provider>
       </BrowserRouter>
