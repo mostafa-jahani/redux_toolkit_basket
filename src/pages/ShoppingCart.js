@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {decrement, increment} from "../redux/slices/cartSlice"
+import {decrement, increment, deleteProduct} from "../redux/slices/cartSlice"
 import Swal from "sweetalert2";
 
 const ShoppingCart = () => {
@@ -25,6 +25,19 @@ const ShoppingCart = () => {
         dispatch(decrement(productId))
         Swal.fire({
             title: "Cart Updated",
+            icon: "success",
+            showConfirmButton: false,
+            timerProgressBar: true,
+            timer: 3000,
+            toast: true,
+            position: 'top',
+        });
+    }
+
+    const handleDelete = (productId) => {
+        dispatch(deleteProduct(productId))
+        Swal.fire({
+            title: "Product Deleted",
             icon: "success",
             showConfirmButton: false,
             timerProgressBar: true,
@@ -84,7 +97,11 @@ const ShoppingCart = () => {
                                     </td>
                                     <td className="align-middle">{product.price * product.qty}</td>
                                     <td className="align-middle" style={{ width: '15%' }}>
-                                        <button className="btn btn-danger btn-sm">delete</button>
+                                        <button
+                                            onClick={() => handleDelete(product.id)}
+                                            className="btn btn-danger btn-sm">
+                                            delete
+                                        </button>
                                     </td>
                                 </tr>
                             ))}

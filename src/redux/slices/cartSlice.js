@@ -22,9 +22,12 @@ const cartSlice = createSlice({
             const product = state.list.find(p => p.id === action.payload)
             state.list = product.qty > 1 ? state.list = state.list.map(p => p.id === action.payload ? {...p, qty: p.qty - 1} : p) : state.list
         },
+        deleteProduct: (state, action) => {
+            state.list = state.list.filter(p => p.id !== action.payload)
+        }
     }
 })
 
 
-export const {addToCart, increment, decrement} = cartSlice.actions
+export const {addToCart, increment, decrement, deleteProduct} = cartSlice.actions
 export default cartSlice.reducer;
