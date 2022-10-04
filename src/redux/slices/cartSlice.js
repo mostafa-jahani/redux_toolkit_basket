@@ -14,11 +14,13 @@ const cartSlice = createSlice({
                 state.list.map(p => p.id === action.payload.id ? {...p, qty: p.qty + 1} : p)
                 :
                 [...state.list, {...action.payload, qty: 1}]
+        },
+        increment: (state, action) => {
+            state.list = state.list.map(p => p.id === action.payload ? {...p, qty: p.qty + 1} : p)
         }
     }
 })
 
 
-
-export const {addToCart} = cartSlice.actions
+export const {addToCart, increment} = cartSlice.actions
 export default cartSlice.reducer;

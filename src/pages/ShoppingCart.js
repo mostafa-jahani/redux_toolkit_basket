@@ -1,7 +1,16 @@
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {increment} from "../redux/slices/cartSlice"
 
 const ShoppingCart = () => {
+
+    //============================== Logic ===========================
+    const dispatch = useDispatch()
     const cartList = useSelector(state => state.cart.list)
+
+    const handleIncrement = (productId) => {
+        dispatch(increment(productId))
+    }
+    //============================== Logic ===========================
 
 
     return (
@@ -20,7 +29,7 @@ const ShoppingCart = () => {
                         </thead>
                         <tbody>
                             {cartList && cartList.map(product => (
-                                <tr>
+                                <tr key={product.id}>
                                     <td className="align-middle">
                                         <div className="row">
                                             <div className="col-lg-2">
@@ -38,7 +47,9 @@ const ShoppingCart = () => {
                                     </td>
                                     <td className="align-middle">{product.price}</td>
                                     <td className="align-middle">
-                                        <button className="btn btn-sm btn-dark me-2">
+                                        <button
+                                            onClick={() => handleIncrement(product.id)}
+                                            className="btn btn-sm btn-dark me-2">
                                             +
                                         </button>
                                         <span>{product.qty}</span>
@@ -58,7 +69,7 @@ const ShoppingCart = () => {
                                 <td>
                                     <a href="/" className="btn btn-dark">Clear Cart</a>
                                 </td>
-                                <td colspan="2" className="hidden-xs"></td>
+                                <td colSpan="2" className="hidden-xs"></td>
                                 <td className="hidden-xs text-center" style={{ width: '15%' }}>
                                     <strong>Total : { cartList.reduce((total, product) => {
                                         return total + product.price * product.qty
