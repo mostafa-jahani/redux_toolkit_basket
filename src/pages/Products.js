@@ -3,6 +3,7 @@ import {useEffect} from "react";
 import axios from "axios";
 import {getProducts} from "../redux/slices/productSlice";
 import {addToCart} from "../redux/slices/cartSlice";
+import Swal from "sweetalert2";
 
 
 const Products = () => {
@@ -22,6 +23,15 @@ const Products = () => {
 
     const handleAddToCart = (product) => {
         dispatch(addToCart(product))
+        Swal.fire({
+            title: "Product added",
+            icon: "success",
+            showConfirmButton: false,
+            timerProgressBar: true,
+            timer: 3000,
+            toast: true,
+            position: 'top',
+        });
     }
 
     //============================== Logic ===========================

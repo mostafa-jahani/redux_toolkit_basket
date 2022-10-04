@@ -1,5 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {increment} from "../redux/slices/cartSlice"
+import Swal from "sweetalert2";
 
 const ShoppingCart = () => {
 
@@ -9,6 +10,15 @@ const ShoppingCart = () => {
 
     const handleIncrement = (productId) => {
         dispatch(increment(productId))
+        Swal.fire({
+            title: "Cart Updated",
+            icon: "success",
+            showConfirmButton: false,
+            timerProgressBar: true,
+            timer: 3000,
+            toast: true,
+            position: 'top',
+        });
     }
     //============================== Logic ===========================
 
