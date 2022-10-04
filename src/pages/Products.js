@@ -10,7 +10,6 @@ const Products = () => {
     //============================== Logic ===========================
     const dispatch = useDispatch()
     const products = useSelector(state => state.products.list)
-    const cartList = useSelector(state => state.cart.list)
 
     useEffect(() => {
         getProductsApi()
