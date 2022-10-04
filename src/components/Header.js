@@ -1,6 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const Header = () => {
+
+    const cartList = useSelector(state => state.cart.list)
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
@@ -20,7 +24,7 @@ const Header = () => {
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
                             <NavLink className={(navData) => navData.isActive ? 'nav-link active p-1 me-3' : 'nav-link'} to="/cart">
-                                <span className="badge rounded-pill bg-primary me-1">0</span>
+                                <span className="badge rounded-pill bg-primary me-1">{cartList.length}</span>
                                 <i className="bi bi-basket-fill fs-4"></i>
                             </NavLink>
                         </li>
